@@ -14,15 +14,18 @@
 class IntList{
 public:
     IntList();
+    IntList(IntList& Old);
     ~IntList();
     bool isEmpty();
-    bool inList();
+    bool inList(int item);
     void addToEnd(int item);
     void addAfter(int item,int position);
     void setAt(int item,int position);
     int getAt(int position);
     int getSize();
     int getCapacity();
+    bool positionValid(int position);
+    int getPointer();
     
 public:
     int size;
