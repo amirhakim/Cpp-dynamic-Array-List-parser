@@ -10,5 +10,32 @@
 #define __A1__WordData__
 
 #include <iostream>
+#include "IntList.h"
+using std::ostream;
+
+class WordData{
+public:
+    WordData();
+    WordData(const char*,int);
+    WordData(const WordData&);
+    ~WordData();
+    void operator=(const WordData&);
+    friend ostream& operator<<(ostream& sout,const WordData& m);
+    
+    void addLineNumber();
+    int getFrequency();
+    const char* getWP();
+    IntList getIntList();
+    int compare(const char*);
+    
+private:
+    char* word;
+    int frequency;
+    IntList lines;
+    
+    
+    
+    
+};
 
 #endif /* defined(__A1__WordData__) */
