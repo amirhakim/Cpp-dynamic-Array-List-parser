@@ -7,3 +7,55 @@
 //
 
 #include "WordData.h"
+
+using std::strlen;
+using std::strcpy;
+
+WordData::WordData()
+{
+    IntList lines;
+    frequency = 0;
+    length = 1;
+    word = new char[1];
+    *word= '\0';
+}
+
+WordData::WordData(const char* newword)
+{
+    length = (int)strlen(newword)+1;
+    word = new char[length];
+    strcpy(word,newword);
+}
+
+WordData::WordData(const WordData& Original)
+{
+    length = Original.length;
+    word = new char[length];
+    strcpy(word,Original.word);
+}
+
+WordData::~WordData()
+{
+    delete[] word;
+}
+
+void WordData::operator=(const WordData& Original)
+{
+    if (this==&Original) return;
+    delete[] word;
+    //WordData(&Original);
+}
+
+const char* WordData::getWord()
+{
+    return word;
+}
+
+ostream& operator<<(ostream& sout,const WordData& Object)
+{
+    sout<<Object.word;
+    return sout;
+}
+
+
+

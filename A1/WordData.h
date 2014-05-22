@@ -14,25 +14,27 @@
 using std::ostream;
 
 class WordData{
+
 public:
     WordData();
-    WordData(const char*,int);
+    WordData(const char*);
     WordData(const WordData&);
     ~WordData();
     void operator=(const WordData&);
-    friend ostream& operator<<(ostream& sout,const WordData& m);
+    friend ostream& operator<<(ostream& sout,const WordData&);
     
     void addLineNumber();
     int getFrequency();
     const char* getWP();
     IntList getIntList();
     int compare(const char*);
+    const char* getWord();
     
 private:
     char* word;
     int frequency;
     IntList lines;
-    
+    int length;
     
     
     

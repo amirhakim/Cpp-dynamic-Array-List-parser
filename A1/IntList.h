@@ -14,7 +14,7 @@
 class IntList{
 public:
     IntList();
-    IntList(IntList& Old);
+    IntList(IntList&);
     ~IntList();
     bool isEmpty();
     bool inList(int item);
