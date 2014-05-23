@@ -53,9 +53,13 @@ const char* WordData::getWord()
 
 ostream& operator<<(ostream& sout,const WordData& Object)
 {
-    sout<<Object.word;
+    sout<<Object.word<<'\n';
     return sout;
 }
 
+int WordData::compare(const char* target)
+{
+    return strcmp(target, word);
+}
 
 

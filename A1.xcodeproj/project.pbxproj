@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		29150CCD191E79D200C2E4E5 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 29150CCC191E79D200C2E4E5 /* main.cpp */; };
+		29150CCD191E79D200C2E4E5 /* wordListDriver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 29150CCC191E79D200C2E4E5 /* wordListDriver.cpp */; };
 		29150CCF191E79D200C2E4E5 /* A1.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 29150CCE191E79D200C2E4E5 /* A1.1 */; };
 		29150CD7191FBD9300C2E4E5 /* IntList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 29150CD5191FBD9300C2E4E5 /* IntList.cpp */; };
 		291BA5DC1926E369004B644F /* WordData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 291BA5DA1926E369004B644F /* WordData.cpp */; };
@@ -15,6 +15,7 @@
 		291BA5EA1926EBDE004B644F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 291BA5E81926EBDE004B644F /* InfoPlist.strings */; };
 		291BA5EC1926EBDE004B644F /* A1_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 291BA5EB1926EBDE004B644F /* A1_Tests.m */; };
 		291BA5F4192792CA004B644F /* IntListTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 291BA5F3192792CA004B644F /* IntListTest.m */; };
+		29AF448B192F9D68001B220A /* WordList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 29AF4489192F9D68001B220A /* WordList.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,7 +43,7 @@
 
 /* Begin PBXFileReference section */
 		29150CC9191E79D200C2E4E5 /* A1 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = A1; sourceTree = BUILT_PRODUCTS_DIR; };
-		29150CCC191E79D200C2E4E5 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		29150CCC191E79D200C2E4E5 /* wordListDriver.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = wordListDriver.cpp; sourceTree = "<group>"; };
 		29150CCE191E79D200C2E4E5 /* A1.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = A1.1; sourceTree = "<group>"; };
 		29150CD5191FBD9300C2E4E5 /* IntList.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IntList.cpp; sourceTree = "<group>"; };
 		29150CD6191FBD9300C2E4E5 /* IntList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntList.h; sourceTree = "<group>"; };
@@ -55,6 +56,9 @@
 		291BA5EB1926EBDE004B644F /* A1_Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = A1_Tests.m; sourceTree = "<group>"; };
 		291BA5ED1926EBDE004B644F /* A1 Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "A1 Tests-Prefix.pch"; sourceTree = "<group>"; };
 		291BA5F3192792CA004B644F /* IntListTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntListTest.m; sourceTree = "<group>"; };
+		29AF4489192F9D68001B220A /* WordList.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = WordList.cpp; sourceTree = "<group>"; };
+		29AF448A192F9D68001B220A /* WordList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WordList.h; sourceTree = "<group>"; };
+		29AF448C192FB70D001B220A /* input.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = input.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,12 +102,15 @@
 		29150CCB191E79D200C2E4E5 /* A1 */ = {
 			isa = PBXGroup;
 			children = (
-				29150CCC191E79D200C2E4E5 /* main.cpp */,
+				29150CCC191E79D200C2E4E5 /* wordListDriver.cpp */,
 				29150CCE191E79D200C2E4E5 /* A1.1 */,
 				29150CD5191FBD9300C2E4E5 /* IntList.cpp */,
 				29150CD6191FBD9300C2E4E5 /* IntList.h */,
 				291BA5DA1926E369004B644F /* WordData.cpp */,
 				291BA5DB1926E369004B644F /* WordData.h */,
+				29AF4489192F9D68001B220A /* WordList.cpp */,
+				29AF448A192F9D68001B220A /* WordList.h */,
+				29AF448C192FB70D001B220A /* input.txt */,
 			);
 			path = A1;
 			sourceTree = "<group>";
@@ -222,7 +229,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				29150CCD191E79D200C2E4E5 /* main.cpp in Sources */,
+				29150CCD191E79D200C2E4E5 /* wordListDriver.cpp in Sources */,
+				29AF448B192F9D68001B220A /* WordList.cpp in Sources */,
 				29150CD7191FBD9300C2E4E5 /* IntList.cpp in Sources */,
 				291BA5DC1926E369004B644F /* WordData.cpp in Sources */,
 			);
@@ -405,6 +413,7 @@
 				291BA5F21926EBDE004B644F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
