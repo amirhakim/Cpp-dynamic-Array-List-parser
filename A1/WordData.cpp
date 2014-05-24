@@ -43,7 +43,9 @@ void WordData::operator=(const WordData& Original)
 {
     if (this==&Original) return;
     delete[] word;
-    //WordData(&Original);
+    length = Original.length;
+    word = new char[length];
+    strcpy(word,Original.word);
 }
 
 const char* WordData::getWord()
@@ -53,7 +55,8 @@ const char* WordData::getWord()
 
 ostream& operator<<(ostream& sout,const WordData& Object)
 {
-    sout<<Object.word<<'\n';
+    sout<< "object.word: " <<Object.word<<'\n';
+    
     return sout;
 }
 
@@ -62,4 +65,8 @@ int WordData::compare(const char* target)
     return strcmp(target, word);
 }
 
+const char* WordData:: getWP()
+{
+    return word;
+}
 

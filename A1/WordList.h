@@ -20,35 +20,39 @@ using std::ifstream;
 using std::string;
 using std::istringstream;
 using std::cout;
+using std::endl;
 
 struct WordNode{
-    WordData word;
+    WordData* word;
     WordNode* next;
-    WordNode(char*,WordNode&);
+    WordNode(char*);
 };
 
 class WordList{
 public:
     WordList();
-    WordList(string&);
+    WordList(const string&);
     WordList(const WordList&);
     ~WordList();
     //void operator=(const WordList&);
     //friend ostream& operator<<(ostream& sout,const WordList&);
     int getSize();
     void print();
-    void load(string&);
+    void load(const string&);
     WordNode* find(const char*);
     void wordHandler(string);
     
 private:
     
 
-    WordList* head;
-    WordList* tail;
+    WordNode* head;
+    WordNode* tail;
     int listSize;
-    void addFirst(const WordNode&);
+    void addFirst(WordNode&);
     bool isInList(const char*);
+    void addLast(WordNode&);
+    void addBefore();
+    
     
 };
 

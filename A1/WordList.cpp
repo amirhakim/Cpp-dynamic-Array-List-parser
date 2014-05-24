@@ -8,10 +8,13 @@
 
 #include "WordList.h"
 
-WordNode::WordNode(char* newWord,WordNode& nextNode)
+WordNode::WordNode(char* newWord)
 {
-    word= newWord;
-    next= &nextNode;
+    cout << newWord << endl;
+    WordData* word = new WordData(newWord);
+    next=nullptr;
+    cout << (word->getWP());
+    
 }
 
 WordList::WordList()
@@ -20,9 +23,14 @@ WordList::WordList()
     listSize=0;
 }
 
-WordList::WordList(string& file)
+WordList::WordList(const string& filename)
 {
-    load(file);
+    load(filename);
+}
+
+WordList::~WordList()
+{
+    
 }
 
 WordNode* WordList::find(const char* newWord)
@@ -43,18 +51,57 @@ int WordList::getSize()
 
 void WordList::wordHandler(string newWord)
 {
-    
+    //cout << newWord << endl;
+    unsigned long cwsize = (newWord.length())+1;
+    char* cword=new char[cwsize];
+    strcpy(cword,newWord.c_str());
+    //WordNode wn(cword);
+    //cout << cword[cwsize-1] << endl;
+    cout << cwsize << endl;
+    cout<<cword<<endl;
+    cout<<&cword<<endl;
+    WordNode w(cword);
+    delete[] cword;
 }
 
-void WordList::load(string& file)
+void WordList::load(const string& file)
 {
     string line;
     string word;
     ifstream ifin(file);
+    while (!ifin.eof())
+    {
     getline(ifin,line);
     istringstream sen(line);
     while(sen>>word)
     {
-        cout<<word;
+        wordHandler(word);
+        //cout<<word<<endl;
     }
+    }
+}
+
+void WordList::addFirst(WordNode& newNode)
+{
+    if (head==nullptr)
+    {
+        cout << " (ERROE@WordList::addFirst)head already exist" << endl;
+        return;
+    }
+    tail=head= &newNode;
+}
+
+void WordList::addLast(WordNode & newNode)
+{
+    if(head==nullptr) addFirst(newNode);
+    else
+    {
+        WordNode* tmp = head;
+        while (tmp->next!=nullptr) {
+            tmp=tmp->next;
+        }
+        tmp->next = &newNode;
+        tail = &newNode;
+    }
+    
 }
