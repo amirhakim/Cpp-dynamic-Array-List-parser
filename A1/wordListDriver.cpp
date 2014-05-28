@@ -16,7 +16,8 @@ using std::string;
 
 int main()
 {
-    string file="/Users/Amir/input.txt";
+    cout << "main" << endl;
+    string file="/Users/genevievechagnon/A1/A1/input.txt";
     WordList w1(file);
     return 0;
 }

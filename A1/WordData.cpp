@@ -10,6 +10,8 @@
 
 using std::strlen;
 using std::strcpy;
+using std::cout;
+using std::endl;
 
 WordData::WordData()
 {
@@ -22,6 +24,7 @@ WordData::WordData()
 
 WordData::WordData(const char* newword)
 {
+    
     length = (int)strlen(newword)+1;
     word = new char[length];
     strcpy(word,newword);
@@ -48,10 +51,6 @@ void WordData::operator=(const WordData& Original)
     strcpy(word,Original.word);
 }
 
-const char* WordData::getWord()
-{
-    return word;
-}
 
 ostream& operator<<(ostream& sout,const WordData& Object)
 {
@@ -67,6 +66,7 @@ int WordData::compare(const char* target)
 
 const char* WordData:: getWP()
 {
+    //cout << word << endl;
     return word;
 }
 

@@ -28,7 +28,6 @@ public:
     const char* getWP();
     IntList getIntList();
     int compare(const char*);
-    const char* getWord();
     
 private:
     char* word;

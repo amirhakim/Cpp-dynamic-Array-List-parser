@@ -15,7 +15,7 @@ IntList::IntList()
     first = NULL;
     size=0;
     capacity=0;
-    std::cout << "new list"<<std::endl;
+    //std::cout << "new list"<<std::endl;
 }
 
 

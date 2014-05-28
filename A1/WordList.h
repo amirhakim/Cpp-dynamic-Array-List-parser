@@ -25,7 +25,7 @@ using std::endl;
 struct WordNode{
     WordData* word;
     WordNode* next;
-    WordNode(char*);
+    WordNode(char*,WordNode*);
 };
 
 class WordList{
@@ -39,18 +39,21 @@ public:
     int getSize();
     void print();
     void load(const string&);
-    WordNode* find(const char*);
-    void wordHandler(string);
+    WordNode* findNode(const char*);
+    void wordHandler(string,int);
+    WordNode* makeNode(char* newWord);
     
-private:
+    
+//private:
     
 
     WordNode* head;
     WordNode* tail;
     int listSize;
-    void addFirst(WordNode&);
+    void addFirst(WordNode*);
     bool isInList(const char*);
-    void addLast(WordNode&);
+    void addLast(WordNode*);
+    void push(WordNode*);
     void addBefore();
     
     
