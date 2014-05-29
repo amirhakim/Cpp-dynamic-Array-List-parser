@@ -55,6 +55,9 @@ public:
     void addLast(WordNode*);
     void push(WordNode*);
     void addBefore();
+    bool isEmpty();
+    void addAfter();
+    void printList();
     
     
 };

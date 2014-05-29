@@ -70,3 +70,8 @@ const char* WordData:: getWP()
     return word;
 }
 
+void WordData::incrementFrequency()
+{
+    frequency++;
+}
+

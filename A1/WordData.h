@@ -25,6 +25,7 @@ public:
     
     void addLineNumber();
     int getFrequency();
+    void incrementFrequency();
     const char* getWP();
     IntList getIntList();
     int compare(const char*);

@@ -29,32 +29,12 @@ WordList::WordList(const string& filename)
     head=tail=nullptr;
     listSize=0;
     load(filename);
+    printList();
 }
 
 WordList::~WordList()
 {
     
-}
-
-WordNode* WordList::findNode(const char* newWord)
-{
-    WordNode* tmp;
-    tmp=head;
-    while (tmp->next!=nullptr)
-    {
-        if (tmp->word->getWP()==newWord)
-        {
-            return tmp;
-        };
-        
-    }
-    return nullptr;
-}
-
-bool WordList::isInList(const char* newWord)
-{
-    bool yesorno=false;
-    return yesorno;
 }
 
 int WordList::getSize()
@@ -101,7 +81,7 @@ void WordList::load(const string& file)
 
 void WordList::addFirst(WordNode* newNode)
 {
-    if (head==nullptr)
+    if (isEmpty())
     {
         head=tail=newNode;
         head->next=nullptr;
@@ -120,7 +100,13 @@ void WordList::addFirst(WordNode* newNode)
 
 void WordList::addLast(WordNode* newNode)
 {
-    if(head==nullptr) addFirst(newNode);
+    if(isEmpty()) addFirst(newNode);
+    else if(listSize==1)
+    {
+        tail->next=newNode;
+        tail=newNode;
+        listSize++;
+    }
     else
     {
         WordNode* tmp = head;
@@ -144,26 +130,105 @@ void WordList::push(WordNode * possibleNode)
 {
     WordNode* tmp = head;
     if (head==nullptr) addFirst(possibleNode);
+    else if ((tmp=findNode(possibleNode->word->getWP()))!=nullptr)
+             {
+                 tmp->word->incrementFrequency();
+             }
     else
     {
-        do
-        {
-            int p = (tmp->word->compare(possibleNode->word->getWP()));
-            cout << "p" << p << endl;
-            if(p==0)
-            {
-                cout << "match: " << tmp->word->getWP()<< endl;
-                //increase frequesncy;
-            }
-            else
-            {
-                addLast(possibleNode);
-            }
-            
-        } while(tmp->next!=nullptr);
+        addLast(possibleNode);
     }
 
 }
+
+bool WordList::isEmpty()
+{
+    if (listSize==0) {
+        return true;
+    }
+    else return false;
+}
+
+bool WordList::isInList(const char* newWord)
+{
+    if (isEmpty()) {
+        return false;
+    }
+    else if(head==tail)
+    {
+        if (head->word->compare(newWord)==0) {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    else
+    {
+        WordNode* tmp=head;
+        while (tmp->next!=nullptr)
+        {
+            if (tmp->word->compare(newWord)==0) {
+                return true;
+            }
+            tmp=tmp->next;
+        }
+        
+    }
+    return false;
+}
+
+WordNode* WordList::findNode(const char *newWord)
+{
+    if (isEmpty()) {
+        return nullptr;
+    }
+    else if (head==tail)
+    {
+        if (head->word->compare(newWord)==0) {
+            return head;
+        }
+        else
+        {
+            return nullptr;
+        }
+    }
+    else
+    {
+        WordNode* tmp=head;
+        while (tmp->next!=nullptr)
+        {
+            if (tmp->word->compare(newWord)==0) {
+                return tmp;
+            }
+            tmp=tmp->next;
+        }
+    }
+    return nullptr;
+}
+
+void WordList::printList()
+{
+    if (isEmpty()) {
+        cout << "is empty"<<endl;
+    }
+    else if (head==tail)
+    {
+        cout << (head->word->getWP()) << endl;
+    }
+    
+    else
+    {
+        WordNode* tmp=head;
+        while (tmp->next!=nullptr) {
+            cout << (tmp->word->getWP()) << endl;
+            tmp=tmp->next;
+        }
+    }
+}
+
+
 
 
 
