@@ -23,9 +23,9 @@ using std::cout;
 using std::endl;
 
 struct WordNode{
-    WordData* word;
+    WordData& word;
     WordNode* next;
-    WordNode(char*,WordNode*);
+    WordNode(WordData&,WordNode*);
 };
 
 class WordList{

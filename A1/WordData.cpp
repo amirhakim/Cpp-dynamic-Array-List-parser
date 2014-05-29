@@ -28,6 +28,7 @@ WordData::WordData(const char* newword)
     length = (int)strlen(newword)+1;
     word = new char[length];
     strcpy(word,newword);
+    //cout << word << endl;
 }
 
 WordData::WordData(const WordData& Original)

@@ -8,12 +8,11 @@
 
 #include "WordList.h"
 
-WordNode::WordNode(char* newWord,WordNode* next)
+WordNode::WordNode(WordData& newWord,WordNode* next):word(newWord)
 {
     //cout << newWord << endl;
-    word = new WordData(newWord);
     this->next=next;
-    //cout << (word->getWP());
+    cout << (word) <<endl;
     
 }
 
@@ -29,7 +28,7 @@ WordList::WordList(const string& filename)
     head=tail=nullptr;
     listSize=0;
     load(filename);
-    printList();
+    //printList();
 }
 
 WordList::~WordList()
@@ -52,7 +51,8 @@ void WordList::wordHandler(string newWord,int lineNumber)
     //cout << cwsize << endl;
     //cout<<cword<<endl;
     //cout<<&cword<<endl;
-    WordNode* wn = new WordNode(cword,nullptr);
+    WordData wd(cword);
+    WordNode* wn = new WordNode(wd,nullptr);
     push(wn);
     delete[] cword;
 }
@@ -122,7 +122,8 @@ void WordList::addLast(WordNode* newNode)
 
 WordNode* WordList::makeNode(char *newWord)
 {
-    WordNode* node = new WordNode(newWord,nullptr);
+    WordData wd(newWord);
+    WordNode* node = new WordNode(wd,nullptr);
     return node;
 }
 
@@ -130,9 +131,9 @@ void WordList::push(WordNode * possibleNode)
 {
     WordNode* tmp = head;
     if (head==nullptr) addFirst(possibleNode);
-    else if ((tmp=findNode(possibleNode->word->getWP()))!=nullptr)
+    else if ((tmp=findNode(possibleNode->word.getWP()))!=nullptr)
              {
-                 tmp->word->incrementFrequency();
+                 tmp->word.incrementFrequency();
              }
     else
     {
@@ -156,7 +157,7 @@ bool WordList::isInList(const char* newWord)
     }
     else if(head==tail)
     {
-        if (head->word->compare(newWord)==0) {
+        if (head->word.compare(newWord)==0) {
             return true;
         }
         else
@@ -169,7 +170,7 @@ bool WordList::isInList(const char* newWord)
         WordNode* tmp=head;
         while (tmp->next!=nullptr)
         {
-            if (tmp->word->compare(newWord)==0) {
+            if (tmp->word.compare(newWord)==0) {
                 return true;
             }
             tmp=tmp->next;
@@ -186,7 +187,7 @@ WordNode* WordList::findNode(const char *newWord)
     }
     else if (head==tail)
     {
-        if (head->word->compare(newWord)==0) {
+        if (head->word.compare(newWord)==0) {
             return head;
         }
         else
@@ -199,7 +200,7 @@ WordNode* WordList::findNode(const char *newWord)
         WordNode* tmp=head;
         while (tmp->next!=nullptr)
         {
-            if (tmp->word->compare(newWord)==0) {
+            if (tmp->word.compare(newWord)==0) {
                 return tmp;
             }
             tmp=tmp->next;
@@ -215,14 +216,14 @@ void WordList::printList()
     }
     else if (head==tail)
     {
-        cout << (head->word->getWP()) << endl;
+        cout << (head->word) << endl;
     }
     
     else
     {
         WordNode* tmp=head;
         while (tmp->next!=nullptr) {
-            cout << (tmp->word->getWP()) << endl;
+            cout << (tmp->word) << endl;
             tmp=tmp->next;
         }
     }
