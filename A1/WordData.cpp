@@ -60,9 +60,23 @@ void WordData::operator=(const WordData& master)
 
 ostream& operator<<(ostream& sout,const WordData& Object)
 {
-    sout<< "object.word: " <<Object.word<<'\n';
+    sout<< "object.word: " <<Object.word<<", repeated" << Object.frequency << Object.lines<<'\n';
     
     return sout;
+}
+
+bool WordData::compareWordData(WordData & Object)
+{
+    if (compare(Object.getWP(),Object.getLength())==0)
+    {
+        incrementFrequency();
+        addLineNumber(Object.lines.getAt(0));
+        return true;
+    }
+    else
+    {
+        return false;
+    }
 }
 
 int WordData::compare(const char* target,int targetLength)
@@ -89,4 +103,24 @@ void WordData::incrementFrequency()
 int WordData::getLength()
 {
     return length;
+}
+
+void WordData::addLineNumber(int newLine)
+{
+    if (lines.isEmpty()) {
+        lines.addToEnd(newLine);
+        incrementFrequency();
+        return;
+    }
+    else if (lines.inList(newLine))
+    {
+        incrementFrequency();
+        return;
+    }
+    else
+    {
+        lines.addToEnd(newLine);
+        incrementFrequency();
+        return;
+    }
 }

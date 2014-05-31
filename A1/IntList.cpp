@@ -40,6 +40,15 @@ void IntList::operator=(const IntList& Old)
     }
 }
 
+ostream& operator<<(ostream& sout,const IntList& Object)
+{
+    sout << Object.size;
+    for (int i=0; i < (Object.size); i++) {
+        sout << '('<< Object.first[i]<< ')' << '\n';
+    }
+    return sout;
+}
+
 IntList::~IntList()
 {
     delete[] first;

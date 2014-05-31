@@ -10,12 +10,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "A1/WordList.cpp"
-            timestampString = "423193807.868705"
+            timestampString = "423237930.733144"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "134"
-            endingLineNumber = "134"
-            landmarkName = "WordList::push(WordNode * possibleNode)"
+            startingLineNumber = "144"
+            endingLineNumber = "144"
+            landmarkName = "WordList::push(WordNode * possibleNode,int lineNumber)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "A1/WordList.cpp"
-            timestampString = "423193807.868705"
+            timestampString = "423237930.733144"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "96"
-            endingLineNumber = "96"
+            startingLineNumber = "105"
+            endingLineNumber = "105"
             landmarkName = "WordList::addFirst(WordNode* newNode)"
             landmarkType = "5">
          </BreakpointContent>
@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "A1/WordData.cpp"
-            timestampString = "423189868.773173"
+            timestampString = "423240295.283843"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "70"
-            endingLineNumber = "70"
+            startingLineNumber = "84"
+            endingLineNumber = "84"
             landmarkName = "WordData::compare(const char* target,int targetLength)"
             landmarkType = "5">
          </BreakpointContent>
@@ -58,12 +58,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "A1/WordList.cpp"
-            timestampString = "423193807.868705"
+            timestampString = "423237930.733144"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "137"
-            endingLineNumber = "137"
-            landmarkName = "WordList::push(WordNode * possibleNode)"
+            startingLineNumber = "147"
+            endingLineNumber = "147"
+            landmarkName = "WordList::push(WordNode * possibleNode,int lineNumber)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -74,12 +74,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "A1/WordList.cpp"
-            timestampString = "423193807.868705"
+            timestampString = "423237930.733144"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "145"
-            endingLineNumber = "145"
-            landmarkName = "WordList::push(WordNode * possibleNode)"
+            startingLineNumber = "155"
+            endingLineNumber = "155"
+            landmarkName = "WordList::push(WordNode * possibleNode,int lineNumber)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "A1/WordList.cpp"
+            timestampString = "423237930.733144"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "167"
+            endingLineNumber = "167"
+            landmarkName = "WordList::push(WordNode * possibleNode,int lineNumber)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -90,12 +106,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "A1/WordList.cpp"
-            timestampString = "423193807.868705"
+            timestampString = "423237930.733144"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "157"
-            endingLineNumber = "157"
-            landmarkName = "WordList::push(WordNode * possibleNode)"
+            startingLineNumber = "169"
+            endingLineNumber = "169"
+            landmarkName = "WordList::push(WordNode * possibleNode,int lineNumber)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -106,28 +122,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "A1/WordList.cpp"
-            timestampString = "423193807.868705"
+            timestampString = "423237930.733144"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "159"
-            endingLineNumber = "159"
-            landmarkName = "WordList::push(WordNode * possibleNode)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "A1/WordList.cpp"
-            timestampString = "423193807.868705"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "160"
-            endingLineNumber = "160"
-            landmarkName = "WordList::push(WordNode * possibleNode)"
+            startingLineNumber = "170"
+            endingLineNumber = "170"
+            landmarkName = "WordList::push(WordNode * possibleNode,int lineNumber)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -138,11 +138,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "A1/WordData.cpp"
-            timestampString = "423189868.773173"
+            timestampString = "423240295.283843"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "69"
-            endingLineNumber = "69"
+            startingLineNumber = "83"
+            endingLineNumber = "83"
             landmarkName = "WordData::compare(const char* target,int targetLength)"
             landmarkType = "5">
          </BreakpointContent>
@@ -154,12 +154,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "A1/WordList.cpp"
-            timestampString = "423193807.868705"
+            timestampString = "423237930.733144"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "47"
-            endingLineNumber = "47"
-            landmarkName = "WordList::wordHandler(string&amp; newWord,int lineNumber)"
+            startingLineNumber = "86"
+            endingLineNumber = "86"
+            landmarkName = "WordList::load(const string&amp; file)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

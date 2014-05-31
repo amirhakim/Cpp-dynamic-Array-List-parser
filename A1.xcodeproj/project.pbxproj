@@ -59,6 +59,7 @@
 		29AF4489192F9D68001B220A /* WordList.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = WordList.cpp; sourceTree = "<group>"; };
 		29AF448A192F9D68001B220A /* WordList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WordList.h; sourceTree = "<group>"; };
 		29AF448C192FB70D001B220A /* input.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = input.txt; sourceTree = "<group>"; };
+		9124389B1939F92A007D90E4 /* scratch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = scratch; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +112,7 @@
 				29AF4489192F9D68001B220A /* WordList.cpp */,
 				29AF448A192F9D68001B220A /* WordList.h */,
 				29AF448C192FB70D001B220A /* input.txt */,
+				9124389B1939F92A007D90E4 /* scratch */,
 			);
 			path = A1;
 			sourceTree = "<group>";

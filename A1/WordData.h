@@ -22,19 +22,18 @@ public:
     ~WordData();
     void operator=(const WordData&);
     friend ostream& operator<<(ostream& sout,const WordData&);
-    
-    void addLineNumber();
+    bool compareWordData(WordData&);
+    void addLineNumber(int newLine);
     int getFrequency();
     void incrementFrequency();
     const char* getWP();
     IntList getIntList();
     int compare(const char*,int);
     int getLength();
-    
+    IntList lines;
 private:
     char* word;
     int frequency;
-    IntList lines;
     int length;
     
     

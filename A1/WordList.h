@@ -42,7 +42,7 @@ public:
     void load(const string&);
     WordNode* findNode(const char*);
     void wordHandler(string&,int);
-    WordNode* makeNode(char* newWord);
+    WordNode* makeNode(char* newWord,int lineNumber);
     
     
 //private:
@@ -54,13 +54,14 @@ public:
     void addFirst(WordNode*);
     bool isInList(const char*);
     void addLast(WordNode*);
-    void push(WordNode*);
+    void push(WordNode*,int);
     void addBefore();
     bool isEmpty();
     void addAfter(WordNode* first,WordNode* second);
     void printList();
     WordNode* travers();
     bool signChanged(int x,int y);
+    void cleanString(string&);
     
     
 };
