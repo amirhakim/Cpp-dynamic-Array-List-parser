@@ -28,7 +28,8 @@ public:
     void incrementFrequency();
     const char* getWP();
     IntList getIntList();
-    int compare(const char*);
+    int compare(const char*,int);
+    int getLength();
     
 private:
     char* word;

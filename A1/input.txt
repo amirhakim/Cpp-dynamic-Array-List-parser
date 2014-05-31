@@ -7,5 +7,5 @@ make sure that the class of these objects defines
 a copy constructor ,
 a copy assignment operator ,
 and a destructor.
-That ’s called the Rule of Three , or the Big Three ,
+That’s called the Rule of Three , or the Big Three ,
 and is emphasized in the C++ literature over and over and over again!

@@ -10,12 +10,15 @@
 #define __A1__IntList__
 
 #include <iostream>
+using std::ostream;
 
 class IntList{
 public:
     IntList();
     IntList(IntList&);
     ~IntList();
+    void operator=(const IntList&);
+    friend ostream& operator<<(ostream& sout,const IntList&);
     bool isEmpty();
     bool inList(int item);
     void addToEnd(int item);

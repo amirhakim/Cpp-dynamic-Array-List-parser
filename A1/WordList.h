@@ -15,6 +15,7 @@
 #include <fstream>
 #include <cstring>
 #include <sstream>
+#include <cctype>
 
 using std::ifstream;
 using std::string;
@@ -23,9 +24,9 @@ using std::cout;
 using std::endl;
 
 struct WordNode{
-    WordData& word;
+    WordData word;
     WordNode* next;
-    WordNode(WordData&,WordNode*);
+    WordNode(WordData,WordNode*);
 };
 
 class WordList{
@@ -40,7 +41,7 @@ public:
     void print();
     void load(const string&);
     WordNode* findNode(const char*);
-    void wordHandler(string,int);
+    void wordHandler(string&,int);
     WordNode* makeNode(char* newWord);
     
     
@@ -56,8 +57,10 @@ public:
     void push(WordNode*);
     void addBefore();
     bool isEmpty();
-    void addAfter();
+    void addAfter(WordNode* first,WordNode* second);
     void printList();
+    WordNode* travers();
+    bool signChanged(int x,int y);
     
     
 };

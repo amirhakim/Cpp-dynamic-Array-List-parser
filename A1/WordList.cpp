@@ -8,11 +8,11 @@
 
 #include "WordList.h"
 
-WordNode::WordNode(WordData& newWord,WordNode* next):word(newWord)
+WordNode::WordNode(WordData newWord,WordNode* next):word(newWord)
 {
     //cout << newWord << endl;
     this->next=next;
-    cout << (word) <<endl;
+    //cout << (word) <<endl;
     
 }
 
@@ -29,6 +29,7 @@ WordList::WordList(const string& filename)
     listSize=0;
     load(filename);
     //printList();
+    //cout << listSize << endl;
 }
 
 WordList::~WordList()
@@ -41,8 +42,9 @@ int WordList::getSize()
     return listSize;
 }
 
-void WordList::wordHandler(string newWord,int lineNumber)
+void WordList::wordHandler(string& newWord,int lineNumber)
 {
+    //newWord.erase(std::remove_if(newWord.begin(), newWord.end(),((int(*)(int))std::isalnum)), newWord.end());
     //cout << newWord << endl;
     unsigned long cwsize = (newWord.length())+1;
     char* cword=new char[cwsize];
@@ -72,6 +74,7 @@ void WordList::load(const string& file)
         istringstream sen(line);
         while(sen>>word)
             {
+                //cout<<word<<endl;
                 wordHandler(word,lineNumber);
                 //cout<<lineNumber;
                 //cout<<word<<endl;
@@ -86,6 +89,7 @@ void WordList::addFirst(WordNode* newNode)
         head=tail=newNode;
         head->next=nullptr;
         listSize++;
+        //cout << "adde first "<<newNode->word.getWP()<<endl;
         return;
     }
     
@@ -105,16 +109,14 @@ void WordList::addLast(WordNode* newNode)
     {
         tail->next=newNode;
         tail=newNode;
+        //cout << "list was 1,new word: "<< newNode->word.getWP()<<endl;
         listSize++;
     }
     else
     {
-        WordNode* tmp = head;
-        while (tmp->next!=nullptr) {
-            tmp=tmp->next;
-        }
-        tmp->next = newNode;
+        tail->next = newNode;
         tail = newNode;
+        //cout << "size was "<<listSize<<"new word "<<newNode->word.getWP()<<endl;
         listSize++;
     }
     
@@ -129,17 +131,61 @@ WordNode* WordList::makeNode(char *newWord)
 
 void WordList::push(WordNode * possibleNode)
 {
-    WordNode* tmp = head;
     if (head==nullptr) addFirst(possibleNode);
-    else if ((tmp=findNode(possibleNode->word.getWP()))!=nullptr)
-             {
-                 tmp->word.incrementFrequency();
-             }
+    else if (listSize==1)
+    {
+        if (head->word.compare(possibleNode->word.getWP(),possibleNode->word.getLength())==0) {
+            head->word.incrementFrequency();
+            //cout << "match1: " << possibleNode->word.getWP()<<endl;
+            //"frequency: " << (possibleNode->word.getFrequency())<<endl;
+            delete possibleNode;
+            return;
+        }
+        else
+        {
+            addLast(possibleNode);
+            //cout << "match2: " << possibleNode->word.getWP()<<endl;
+        }
+    }
+    
     else
     {
-        addLast(possibleNode);
+        
+        WordNode* tmp = head;
+        while (tmp->next!=nullptr)
+        {
+            int x{0},y{0};
+            x=tmp->word.compare(possibleNode->word.getWP(),possibleNode->word.getLength());
+            y=tmp->next->word.compare(possibleNode->word.getWP(),possibleNode->word.getLength());
+            //cout<<"x="<<x<<"y="<<y<<endl;
+            if (x==0)
+            {
+                tmp->word.incrementFrequency();
+                delete possibleNode;
+                return;
+            }
+            
+            else if (x<0)
+            {
+                addFirst(possibleNode);
+                return;
+            }
+            
+            
+            else if (x>y)
+            {
+                addAfter(tmp, possibleNode);
+                return;
+            }
+            
+            else
+            {
+                addLast(possibleNode);
+                return;
+            }
+            tmp=tmp->next;
+        }
     }
-
 }
 
 bool WordList::isEmpty()
@@ -157,7 +203,7 @@ bool WordList::isInList(const char* newWord)
     }
     else if(head==tail)
     {
-        if (head->word.compare(newWord)==0) {
+        if (head->word.compare(newWord,strlen(newWord))==0) {
             return true;
         }
         else
@@ -170,7 +216,7 @@ bool WordList::isInList(const char* newWord)
         WordNode* tmp=head;
         while (tmp->next!=nullptr)
         {
-            if (tmp->word.compare(newWord)==0) {
+            if (tmp->word.compare(newWord,strlen(newWord))==0) {
                 return true;
             }
             tmp=tmp->next;
@@ -187,7 +233,7 @@ WordNode* WordList::findNode(const char *newWord)
     }
     else if (head==tail)
     {
-        if (head->word.compare(newWord)==0) {
+        if (head->word.compare(newWord,strlen(newWord))==0) {
             return head;
         }
         else
@@ -200,7 +246,7 @@ WordNode* WordList::findNode(const char *newWord)
         WordNode* tmp=head;
         while (tmp->next!=nullptr)
         {
-            if (tmp->word.compare(newWord)==0) {
+            if (tmp->word.compare(newWord,strlen(newWord))==0) {
                 return tmp;
             }
             tmp=tmp->next;
@@ -214,7 +260,7 @@ void WordList::printList()
     if (isEmpty()) {
         cout << "is empty"<<endl;
     }
-    else if (head==tail)
+    else if (listSize==1)
     {
         cout << (head->word) << endl;
     }
@@ -227,7 +273,53 @@ void WordList::printList()
             tmp=tmp->next;
         }
     }
+    cout << "list size: " << listSize << endl;
 }
+
+void WordList::addAfter(WordNode *first, WordNode *second)
+{
+    if (isEmpty())
+    {
+        cout << "(ERROR@WordList::addAfter)new list created with two nodes"<<endl;
+    }
+    else if (listSize==1)
+    {
+        if (first==head)
+        {
+            addLast(second);
+        }
+        else
+        {
+            cout << "(ERROR@WordList::addAfter)first node was not in list=>nothing to do"<<endl;
+            return;
+        }
+    }
+    else
+    {
+        WordNode* tmp=head;
+        while (tmp->next!=nullptr)
+        {
+            if (tmp==first) {
+                second->next=tmp->next;
+                tmp->next=second;
+                listSize++;
+                return;
+            }
+            tmp=tmp->next;
+        }
+    }
+}
+
+bool WordList::signChanged(int x, int y)
+{
+    bool hasChanged = (x >= 0) ^ (y < 0);
+    //cout << "x=" << x << " y=" << y << endl;
+    //cout << hasChanged << endl;
+    return hasChanged;
+}
+
+
+
 
 
 

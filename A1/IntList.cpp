@@ -18,16 +18,31 @@ IntList::IntList()
     //std::cout << "new list"<<std::endl;
 }
 
-
 IntList::IntList(IntList& Old)
 {
-    
+    size=Old.size;
+    capacity=Old.capacity;
+    first= new int[size];
+    for (int i=0; i<size; i++) {
+        first[i]=Old.first[i];
+    }
 }
 
+void IntList::operator=(const IntList& Old)
+{
+    if (this==&Old) return;
+    delete[] first;
+    size=Old.size;
+    capacity=Old.capacity;
+    first= new int[size];
+    for (int i=0; i<size; i++) {
+        first[i]=Old.first[i];
+    }
+}
 
 IntList::~IntList()
 {
-    delete first;
+    delete[] first;
 }
 
 

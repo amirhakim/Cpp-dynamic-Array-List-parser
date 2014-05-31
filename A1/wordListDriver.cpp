@@ -19,6 +19,7 @@ int main()
     cout << "main" << endl;
     string file="/Users/genevievechagnon/A1/A1/input.txt";
     WordList w1(file);
+    w1.printList();
     return 0;
 }
 

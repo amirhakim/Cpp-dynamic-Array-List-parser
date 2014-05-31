@@ -24,18 +24,21 @@ WordData::WordData()
 
 WordData::WordData(const char* newword)
 {
-    
+    IntList lines;
+    frequency=1;
     length = (int)strlen(newword)+1;
     word = new char[length];
     strcpy(word,newword);
     //cout << word << endl;
 }
 
-WordData::WordData(const WordData& Original)
+WordData::WordData(const WordData& master)
 {
-    length = Original.length;
+    length = master.length;
+    frequency=master.frequency;
+    lines=master.lines;
     word = new char[length];
-    strcpy(word,Original.word);
+    strcpy(word,master.word);
 }
 
 WordData::~WordData()
@@ -43,13 +46,15 @@ WordData::~WordData()
     delete[] word;
 }
 
-void WordData::operator=(const WordData& Original)
+void WordData::operator=(const WordData& master)
 {
-    if (this==&Original) return;
+    if (this==&master) return;
     delete[] word;
-    length = Original.length;
+    length = master.length;
+    frequency=master.frequency;
+    lines=master.lines;
     word = new char[length];
-    strcpy(word,Original.word);
+    strcpy(word,master.word);
 }
 
 
@@ -60,9 +65,14 @@ ostream& operator<<(ostream& sout,const WordData& Object)
     return sout;
 }
 
-int WordData::compare(const char* target)
+int WordData::compare(const char* target,int targetLength)
 {
-    return strcmp(target, word);
+    char* targetCopy= new char[targetLength];
+    strcpy(targetCopy,target);
+    int x=strcmp(targetCopy, word);
+    //cout<<"strcmp="<<x<<endl;
+    delete[] targetCopy;
+    return x;
 }
 
 const char* WordData:: getWP()
@@ -76,3 +86,7 @@ void WordData::incrementFrequency()
     frequency++;
 }
 
+int WordData::getLength()
+{
+    return length;
+}
