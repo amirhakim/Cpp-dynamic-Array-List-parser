@@ -29,7 +29,6 @@ WordData::WordData(const char* newword)
     length = (int)strlen(newword)+1;
     word = new char[length];
     strcpy(word,newword);
-    //cout << word << endl;
 }
 
 WordData::WordData(const WordData& master)
@@ -69,7 +68,6 @@ bool WordData::compareWordData(WordData & Object)
 {
     if (compare(Object.getWP(),Object.getLength())==0)
     {
-        //incrementFrequency();
         addLineNumber(Object.lines.getAt(0));
         return true;
     }
@@ -84,14 +82,12 @@ int WordData::compare(const char* target,int targetLength)
     char* targetCopy= new char[targetLength];
     strcpy(targetCopy,target);
     int x=strcmp(targetCopy, word);
-    //cout<<"strcmp="<<x<<endl;
     delete[] targetCopy;
     return x;
 }
 
 const char* WordData:: getWP()
 {
-    //cout << word << endl;
     return word;
 }
 

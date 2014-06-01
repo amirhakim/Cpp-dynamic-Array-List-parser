@@ -37,33 +37,25 @@ public:
     WordList(const string&);
     WordList(const WordList&);
     ~WordList();
-    //void operator=(const WordList&);
-    //friend ostream& operator<<(ostream& sout,const WordList&);
+    void operator=(const WordList&);
+    friend ostream& operator<<(ostream& sout,const WordList&);
     int getSize();
     void print();
     void load(const string&);
-    WordNode* findNode(const char*);
     void wordHandler(string&,int);
-    WordNode* makeNode(char* newWord,int lineNumber);
     
-    
-//private:
-    
-
+private:
     WordNode* head;
     WordNode* tail;
     int listSize;
     string file;
     void addFirst(WordNode*);
-    bool isInList(const char*);
     void addLast(WordNode*);
     void push(WordNode*,int);
     void addBefore();
     bool isEmpty();
     void addAfter(WordNode* first,WordNode* second);
     void printList();
-    WordNode* travers();
-    bool signChanged(int x,int y);
     void cleanString(string&);
     void sort();
     void mergeSort();

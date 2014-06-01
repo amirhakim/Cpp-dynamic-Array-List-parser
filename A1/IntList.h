@@ -30,12 +30,10 @@ public:
     bool positionValid(int position);
     int getPointer();
     
-public:
+private:
     int size;
     int capacity;
     int* first;
-    const int* cfirst;
-private:
     void listHandler();
     
 };
