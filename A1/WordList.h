@@ -36,9 +36,6 @@ public:
     WordList();
     WordList(const string&);
     WordList(const WordList&);
-    ~WordList();
-    void operator=(const WordList&);
-    friend ostream& operator<<(ostream& sout,const WordList&);
     int getSize();
     void print();
     void load(const string&);
@@ -52,6 +49,7 @@ private:
     void addFirst(WordNode*);
     void addLast(WordNode*);
     void push(WordNode*,int);
+    void popAll(WordNode*);
     void addBefore();
     bool isEmpty();
     void addAfter(WordNode* first,WordNode* second);
@@ -60,9 +58,9 @@ private:
     void sort();
     void mergeSort();
     WordNode* mergeLists(WordNode*, WordNode*);
-    WordNode* MergeSort(WordNode*);
-    WordNode* Merge(WordNode*,WordNode*);
-    WordNode* Split(WordNode*);
+    WordNode* mergeSort(WordNode*);
+    WordNode* merge(WordNode*,WordNode*);
+    WordNode* split(WordNode*);
     
 };
 

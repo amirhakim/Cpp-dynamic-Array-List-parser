@@ -25,14 +25,11 @@ WordList::WordList(const string& filename)
     listSize=0;
     file=filename;
     load(filename);
-    head=MergeSort(head);
+    head=mergeSort(head);
     printList();
+    popAll(head);
 }
 
-WordList::~WordList()
-{
-    
-}
 
 int WordList::getSize()
 {
@@ -66,6 +63,11 @@ void WordList::load(const string& file)
     string word;
     ifstream ifin(file);
     int lineNumber = 0;
+    if (!ifin.is_open())
+    {
+        printf ("Error opening file");
+        exit (EXIT_FAILURE);
+    }
     while (!ifin.eof())
     {
         lineNumber++;
@@ -184,6 +186,9 @@ void WordList::printList()
                 header++;
                 cout <<"<"<<header<<">"<<endl;
                 if (header==next) continue;
+                if (header=='[') {
+                    return;
+                }
             }
             
             cout << setw(20)<< (tmp->word) << endl;
@@ -231,49 +236,57 @@ void WordList::addAfter(WordNode *first, WordNode *second)
 }
 
 
-WordNode* WordList::MergeSort(WordNode *my_node)
+WordNode* WordList::mergeSort(WordNode *head)
 {
     WordNode *secondNode;
     
-    if (my_node == NULL)
+    if (head == NULL)
         return NULL;
-    else if (my_node->next == NULL)
-        return my_node;
+    else if (head->next == NULL)
+        return head;
     else
     {
-        secondNode = Split(my_node);
-        return Merge(MergeSort(my_node),MergeSort(secondNode));
+        secondNode = split(head);
+        return merge(mergeSort(head),mergeSort(secondNode));
     }
 }
 
-WordNode* WordList::Merge(WordNode* firstNode, WordNode* secondNode)
+WordNode* WordList::merge(WordNode* firstNode, WordNode* secondNode)
 {
     if (firstNode == NULL) return secondNode;
     else if (secondNode == NULL) return firstNode;
     else if (firstNode->word.compare(secondNode->word.getWP(), secondNode->word.getLength())>=0)     {
-        firstNode->next = Merge(firstNode->next, secondNode);
+        firstNode->next = merge(firstNode->next, secondNode);
         return firstNode;
     }
     else
     {
-        secondNode->next = Merge(firstNode, secondNode->next);
+        secondNode->next = merge(firstNode, secondNode->next);
         return secondNode;
     }
 }
 
-WordNode* WordList::Split(WordNode* my_node)
+WordNode* WordList::split(WordNode* head)
 {
     WordNode* secondNode;
     
-    if (my_node == NULL) return NULL;
-    else if (my_node->next == NULL) return NULL;
+    if (head == NULL) return NULL;
+    else if (head->next == NULL) return NULL;
     else {
-        secondNode = my_node->next;
-        my_node->next = secondNode->next;
-        secondNode->next = Split(secondNode->next);
+        secondNode = head->next;
+        head->next = secondNode->next;
+        secondNode->next = split(secondNode->next);
         return secondNode;
     }
 }
 
-
+void WordList::popAll(WordNode* head)
+{
+    if (head) {
+        popAll(head->next);
+        delete head;
+    }
+    head=tail=nullptr;
+    listSize=0;
+}
 
