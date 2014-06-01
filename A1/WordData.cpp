@@ -60,7 +60,7 @@ void WordData::operator=(const WordData& master)
 
 ostream& operator<<(ostream& sout,const WordData& Object)
 {
-    sout<< "object.word: " <<Object.word<<", repeated" << Object.frequency << Object.lines<<'\n';
+    sout<<Object.word << " " << Object.lines<<" ";
     
     return sout;
 }
@@ -69,7 +69,7 @@ bool WordData::compareWordData(WordData & Object)
 {
     if (compare(Object.getWP(),Object.getLength())==0)
     {
-        incrementFrequency();
+        //incrementFrequency();
         addLineNumber(Object.lines.getAt(0));
         return true;
     }
@@ -123,4 +123,11 @@ void WordData::addLineNumber(int newLine)
         incrementFrequency();
         return;
     }
+}
+
+char WordData::getFirstLetter()
+{
+    char firstLetter=word[0];
+    
+    return firstLetter;
 }

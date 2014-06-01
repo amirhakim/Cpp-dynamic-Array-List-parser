@@ -16,12 +16,14 @@
 #include <cstring>
 #include <sstream>
 #include <cctype>
+#include <iomanip>
 
 using std::ifstream;
 using std::string;
 using std::istringstream;
 using std::cout;
 using std::endl;
+using std::setw;
 
 struct WordNode{
     WordData word;
@@ -51,6 +53,7 @@ public:
     WordNode* head;
     WordNode* tail;
     int listSize;
+    string file;
     void addFirst(WordNode*);
     bool isInList(const char*);
     void addLast(WordNode*);
@@ -62,7 +65,12 @@ public:
     WordNode* travers();
     bool signChanged(int x,int y);
     void cleanString(string&);
-    
+    void sort();
+    void mergeSort();
+    WordNode* mergeLists(WordNode*, WordNode*);
+    WordNode* MergeSort(WordNode*);
+    WordNode* Merge(WordNode*,WordNode*);
+    WordNode* Split(WordNode*);
     
 };
 

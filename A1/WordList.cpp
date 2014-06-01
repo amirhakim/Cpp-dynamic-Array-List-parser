@@ -27,9 +27,10 @@ WordList::WordList(const string& filename)
     //cout << "wordlist" << endl;
     head=tail=nullptr;
     listSize=0;
+    file=filename;
     load(filename);
-    //printList();
-    //cout << listSize << endl;
+    head=MergeSort(head);
+    printList();
 }
 
 WordList::~WordList()
@@ -54,7 +55,7 @@ void WordList::cleanString(string & word)
 
 void WordList::wordHandler(string& newWord,int lineNumber)
 {
-    cout << newWord << endl;
+    //cout << newWord << endl;
     unsigned long cwsize = (newWord.length())+1;
     char* cword=new char[cwsize];
     strcpy(cword,newWord.c_str());
@@ -63,7 +64,7 @@ void WordList::wordHandler(string& newWord,int lineNumber)
     WordNode* wn = new WordNode(wd,nullptr);
     push(wn,lineNumber);
     delete[] cword;
-    printList();
+    //printList();
 }
 
 void WordList::load(const string& file)
@@ -142,9 +143,9 @@ void WordList::push(WordNode * possibleNode,int lineNumber)
     if (head==nullptr) addFirst(possibleNode);
     else if (listSize==1)
     {
-        if (head->word.compare(possibleNode->word.getWP(),possibleNode->word.getLength())==0) {
-            head->word.incrementFrequency();
-            head->word.addLineNumber(lineNumber);
+        if (head->word.compareWordData(possibleNode->word)==true) {
+            //head->word.incrementFrequency();
+            //head->word.addLineNumber(lineNumber);
             //cout << "match1: " << possibleNode->word.getWP()<<endl;
             //"frequency: " << (possibleNode->word.getFrequency())<<endl;
             delete possibleNode;
@@ -163,46 +164,15 @@ void WordList::push(WordNode * possibleNode,int lineNumber)
         WordNode* tmp = head;
         while (tmp!=nullptr)
         {
-            int x{0},y{0};
-            x=tmp->word.compare(possibleNode->word.getWP(),possibleNode->word.getLength());
-            y=tmp->next->word.compare(possibleNode->word.getWP(),possibleNode->word.getLength());
-            //cout<<"x="<<x<<"y="<<y<<endl;
-            if (x==0)
+            if (tmp->word.compareWordData(possibleNode->word)==true)
             {
-                tmp->word.incrementFrequency();
-                tmp->word.addLineNumber(lineNumber);
                 delete possibleNode;
-                return;
-            }
-            
-            else if (y==0)
-            {
-                tmp->next->word.incrementFrequency();
-                tmp->next->word.addLineNumber(lineNumber);
-                delete possibleNode;
-                return;
-            }
-            
-            else if (x>0 && y>0 && x>y)
-            {
-                addAfter(tmp->next,possibleNode);
-                return;
-            }
-            
-            
-            else if (x<0 && y<0)
-            {
-                addFirst(possibleNode);
-                return;
-            }
-            
-            else
-            {
-                addAfter(tmp,possibleNode);
                 return;
             }
             tmp=tmp->next;
         }
+        addLast(possibleNode);
+        delete tmp;
     }
 }
 
@@ -275,23 +245,35 @@ WordNode* WordList::findNode(const char *newWord)
 
 void WordList::printList()
 {
+    cout << "Word Collection Source File:  "<<file<<endl;
+    cout << "==============================="<<endl;
     if (isEmpty()) {
         cout << "is empty"<<endl;
     }
     else if (listSize==1)
     {
+        cout << "Only one element found "<<endl;
         cout << (head->word) << endl;
     }
     
     else
     {
         WordNode* tmp=head;
+        char header = '@';
         while (tmp!=nullptr) {
-            cout << (tmp->word) << endl;
+            char next=tmp->word.getFirstLetter();
+            next=toupper(next);
+            while (header!=next)
+            {
+                header++;
+                cout <<"<"<<header<<">"<<endl;
+                if (header==next) continue;
+            }
+            
+            cout << setw(20)<< (tmp->word) << endl;
             tmp=tmp->next;
         }
     }
-    cout << "list size: " << listSize << endl;
 }
 
 void WordList::addAfter(WordNode *first, WordNode *second)
@@ -340,10 +322,50 @@ bool WordList::signChanged(int x, int y)
     return hasChanged;
 }
 
+WordNode* WordList::MergeSort(WordNode *my_node)
+{
+    WordNode *secondNode;
+    
+    if (my_node == NULL)
+        return NULL;
+    else if (my_node->next == NULL)
+        return my_node;
+    else
+    {
+        secondNode = Split(my_node);
+        return Merge(MergeSort(my_node),MergeSort(secondNode));
+    }
+}
 
+WordNode* WordList::Merge(WordNode* firstNode, WordNode* secondNode)
+{
+    if (firstNode == NULL) return secondNode;
+    else if (secondNode == NULL) return firstNode;
+    else if (firstNode->word.compare(secondNode->word.getWP(), secondNode->word.getLength())>=0) //if I reverse the sign to >=, the behavior reverses
+    {
+        firstNode->next = Merge(firstNode->next, secondNode);
+        return firstNode;
+    }
+    else
+    {
+        secondNode->next = Merge(firstNode, secondNode->next);
+        return secondNode;
+    }
+}
 
-
-
+WordNode* WordList::Split(WordNode* my_node)
+{
+    WordNode* secondNode;
+    
+    if (my_node == NULL) return NULL;
+    else if (my_node->next == NULL) return NULL;
+    else {
+        secondNode = my_node->next;
+        my_node->next = secondNode->next;
+        secondNode->next = Split(secondNode->next);
+        return secondNode;
+    }
+}
 
 
 

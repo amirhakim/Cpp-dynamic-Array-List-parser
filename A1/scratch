@@ -9,3 +9,42 @@ a copy assignment operator ,
 and a destructor.
 That’s called the Rule of Three , or the Big Three ,
 and is emphasized in the C++ literature over and over and over again!
+////////////////////////////////////////
+            int x{0},y{0};
+            x=tmp->word.compare(possibleNode->word.getWP(),possibleNode->word.getLength());
+            y=tmp->next->word.compare(possibleNode->word.getWP(),possibleNode->word.getLength());
+            //cout<<"x="<<x<<"y="<<y<<endl;
+            if (x==0)
+            {
+                tmp->word.incrementFrequency();
+                tmp->word.addLineNumber(lineNumber);
+                delete possibleNode;
+                return;
+            }
+            
+            else if (y==0)
+            {
+                tmp->next->word.incrementFrequency();
+                tmp->next->word.addLineNumber(lineNumber);
+                delete possibleNode;
+                return;
+            }
+            
+            else if (x>0 && y>0 && x>y)
+            {
+                addAfter(tmp->next,possibleNode);
+                return;
+            }
+            
+            
+            else if (x<0 && y<0)
+            {
+                addFirst(possibleNode);
+                return;
+            }
+            
+            else
+            {
+                addAfter(tmp,possibleNode);
+                return;
+            }

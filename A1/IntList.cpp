@@ -42,10 +42,11 @@ void IntList::operator=(const IntList& Old)
 
 ostream& operator<<(ostream& sout,const IntList& Object)
 {
-    sout << Object.size;
+    sout<< '(' << Object.size<< ')';
     for (int i=0; i < (Object.size); i++) {
-        sout << '('<< Object.first[i]<< ')' << '\n';
+        sout << ' '<< Object.first[i]<< ' ';
     }
+    sout<<'\n';
     return sout;
 }
 

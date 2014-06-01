@@ -31,6 +31,7 @@ public:
     int compare(const char*,int);
     int getLength();
     IntList lines;
+    char getFirstLetter();
 private:
     char* word;
     int frequency;
